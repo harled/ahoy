@@ -195,8 +195,9 @@ module Ahoy
       if defined?(ActionDispatch::RemoteIp::IpSpoofAttackError) && e.is_a?(ActionDispatch::RemoteIp::IpSpoofAttackError)
         debug "Tracking excluded due to IP spoofing"
       else
-        raise e if !defined?(Rails) || Rails.env.development? || Rails.env.test?
-        Safely.report_exception(e)
+        raise e
+        # raise e if !defined?(Rails) || Rails.env.development? || Rails.env.test?
+        # Safely.report_exception(e)
       end
     end
 
